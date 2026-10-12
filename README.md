@@ -29,4 +29,4 @@ Install Xcode (free), then XcodeGen. Run `xcodegen generate` from this folder an
 
 ## Verification status
 
-Swift syntax and Info.plist validation passed locally. An actual iOS SDK build and physical iPhone background-audio test are required before calling the native app verified. The Mac does not currently have full Xcode or an Apple signing identity.
+Swift syntax and Info.plist validation passed locally. A full iPhone SDK build succeeded on the standard GitHub runner: https://github.com/sidkennedy/boris-ios/actions/runs/38226939429. Installing on a physical iPhone and testing background audio are still required. The Mac does not currently have full Xcode or an Apple signing identity.
