@@ -1,0 +1,31 @@
+name: Build Boris for free sideloading
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: boris-ios-build
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+      - name: Compile for iPhone without signing credentials
+        run: |
+          xcodebuild -project Boris.xcodeproj -scheme Boris -configuration Release -destination 'generic/platform=iOS' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - name: Package for AltStore
+        run: |
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/Boris.app Payload/
+          ditto -c -k --sequesterRsrc --keepParent Payload Boris.ipa
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Boris-unsigned-for-AltStore
+          path: Boris.ipa
+          retention-days: 3
