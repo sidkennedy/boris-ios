@@ -12,10 +12,11 @@ targets:
     type: application
     platform: iOS
     sources: [Boris]
-    info:
-      path: Boris/Info.plist
     settings:
       base:
+        # Use the checked-in plist; XcodeGen's `info` block replaces its contents.
+        INFOPLIST_FILE: Boris/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
         PRODUCT_BUNDLE_IDENTIFIER: com.sidney.boris
         SWIFT_VERSION: "5.0"
         CODE_SIGN_STYLE: Automatic
