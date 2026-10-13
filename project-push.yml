@@ -1,0 +1,15 @@
+# Requires an Apple team/provisioning profile with Push Notifications enabled.
+# The default project.yml remains compatible with free personal sideloading.
+include:
+  - project.yml
+targets:
+  Boris:
+    settings:
+      base:
+        CODE_SIGN_ENTITLEMENTS: Boris/Boris.entitlements
+        BORIS_APNS_ENVIRONMENT: development
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) BORIS_REMOTE_PUSH"
+      configs:
+        Release:
+          BORIS_APNS_ENVIRONMENT: production
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) BORIS_REMOTE_PUSH BORIS_APNS_PRODUCTION"

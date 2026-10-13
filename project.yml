@@ -2,7 +2,7 @@ name: Boris
 options:
   bundleIdPrefix: com.sidney
   deploymentTarget:
-    iOS: '17.0'
+    iOS: "17.0"
 packages:
   LiveKit:
     url: https://github.com/livekit/client-sdk-swift.git
@@ -17,8 +17,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sidney.boris
-        SWIFT_VERSION: '5.0'
+        SWIFT_VERSION: "5.0"
         CODE_SIGN_STYLE: Automatic
-        TARGETED_DEVICE_FAMILY: '1'
+        TARGETED_DEVICE_FAMILY: "1"
     dependencies:
       - package: LiveKit
